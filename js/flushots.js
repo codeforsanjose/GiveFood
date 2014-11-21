@@ -47,6 +47,10 @@ var Foodshots = (function($) {
 				this.Events[i].latlng = new google.maps.LatLng(this.Events[i].data.latitude,this.Events[i].data.longitude);
 				// Create the markers for each event
 				var icon = 'img/red.png';
+				if($.trim(this.Events[i].data.cost.toLowerCase()).search(/no cost/) > -1 && $.trim(this.Events[i].data.cost.toLowerCase()).length > 0)
+				{
+					icon = 'img/blue.png';
+				}
 				this.Events[i].marker = new google.maps.Marker({
 					position: this.Events[i].latlng,
 					map: Map.Map,
@@ -224,7 +228,7 @@ var Foodshots = (function($) {
 			controlText.style.paddingRight = '.5em';
 			controlText.style.paddingTop = '.3em';
 			controlText.style.paddingBottom = '.3em';
-			controlText.innerHTML = '<div><a data-toggle="modal" href="#modal-fee">Currently Open Canned Food Donation Location</a><img src="img/red.png" /></div>';
+			controlText.innerHTML = '<div><a data-toggle="modal" href="#modal-fee">Currently Open Canned Food Donation Location</a><img src="img/blue.png" /></div>';
 			controlUI.appendChild(controlText);
 		// Setup the click event listeners.
 		//	google.maps.event.addDomListener(controlUI, 'click', function() {
@@ -305,7 +309,16 @@ var Foodshots = (function($) {
 					)
 				)
 				{
-               this.Events[i].marker.setIcon('img/red.png');
+					// See if it is a free event
+					if($.trim(this.Events[i].data.cost.toLowerCase()).search(/no cost/) > -1 && $.trim(this.Events[i].data.cost.toLowerCase()).length > 0)
+					{
+						this.Events[i].marker.setIcon('img/blue.png');
+					}
+					else
+					{
+						// Hand over some dead presidents.
+						this.Events[i].marker.setIcon('img/red.png');
+					}
 				}
 				else
 				{
