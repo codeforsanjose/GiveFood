@@ -106,58 +106,6 @@
 			alert('Oh, no! We are having trouble getting the information we need from storage.');
 		});
 		
-		$('#nav-all').click(function(){
-			
-			// Change the UI
-			$('#nav-li-days,#nav-li-seven,.day-btn').removeClass('active');
-			$('#nav-li-all').addClass('active');
-			$('#nav-days-text').text('On A Day');
-			if($('#navbar-button').is(':visible'))
-			{
-				$('#navbar-button').click();
-			}
-			
-			// Selected today's events
-			Food.setMarkersByDay('all');
-			
-		}); // END Day dropup listener
-		
-		// Seven Day listener
-		$('#nav-seven').click(function(){
-			
-			// Change the UI
-			$('#nav-li-days,#nav-li-all,.day-btn').removeClass('active');
-			$('#nav-li-seven').addClass('active');
-			$('#nav-days-text').text('On A Day');
-			if($('#navbar-button').is(':visible'))
-			{
-				$('#navbar-button').click();
-			}
-			
-			// Selected today's events
-			Food.setMarkersByDay('seven');
-			
-		}); // END 7 day listener
-		
-		/*
-		 * The Day dropup list listener
-		 */
-		$('.day').click(function(){
-			
-			// Change the UI
-			$('#nav-li-all,#nav-li-seven').removeClass('active');
-			$('#nav-li-days').addClass('active');
-			$('#nav-days-text').text($(this).text());
-			if($('#navbar-button').is(':visible'))
-			{
-				$('#navbar-button').click();
-			}
-			
-			// Select the day's events
-			Food.setMarkersByDay($(this).text());
-			
-		}); // END Day dropup listener
-		
 		$('#nav-address').change(function(){
 			if($(this).val().length === 0)
 			{
