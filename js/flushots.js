@@ -228,7 +228,7 @@ var Foodshots = (function($) {
 			controlText.style.paddingRight = '.5em';
 			controlText.style.paddingTop = '.3em';
 			controlText.style.paddingBottom = '.3em';
-			controlText.innerHTML = '<div><a data-toggle="modal" href="#modal-fee">Upcoming Immunization Location</a><img src="img/blue.png" /></div>';
+			controlText.innerHTML = '<div><a data-toggle="modal" href="#modal-fee">Currently Open Canned Food Donation Location</a><img src="img/blue.png" /></div>';
 			controlUI.appendChild(controlText);
 		// Setup the click event listeners.
 		//	google.maps.event.addDomListener(controlUI, 'click', function() {
@@ -278,16 +278,7 @@ var Foodshots = (function($) {
 					&& parseInt(this.now.toString('yyyyMMdd'),10) <= parseInt(Date.parse(this.Events[i].data.end_date).toString('yyyyMMdd'),10)
 				)
 				{
-					// See if it is a free event
-					if($.trim(this.Events[i].data.cost.toLowerCase()).search(/no cost/) > -1 && $.trim(this.Events[i].data.cost.toLowerCase()).length > 0)
-					{
-						this.Events[i].marker.setIcon('img/blue.png');
-					}
-					else
-					{
-						// Hand over some dead presidents.
-						this.Events[i].marker.setIcon('img/red.png');
-					}
+               this.Events[i].marker.setIcon('img/red.png');
 				}
 				else if
 				(
