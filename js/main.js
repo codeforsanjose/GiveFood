@@ -1,4 +1,4 @@
-(function($,TkMap,FusionTable,Flushots){
+(function($,TkMap,FusionTable,Foodshots){
 	/**
 	 * @classDescription - Default settings for this application
 	 * @class - Default
@@ -9,7 +9,8 @@
 		// DOM ID of where the Google Map is to be rendered
 		domid:'map',
 		// Google Fusion Tables SQL-like query string for flu shot location data
-		eventquery:'SELECT * FROM 1_3HJ6VW-HtDl6Gm8a8kV43lwGMXN9YOtqW3N2w2p',
+		eventquery:'SELECT * FROM 1k0h-55qr_4o42PTkXrUpHNNOld8ACL2p4oUSxqd8', // new
+		//eventquery:'SELECT * FROM 1_3HJ6VW-HtDl6Gm8a8kV43lwGMXN9YOtqW3N2w2p', // orig
 		// Google Fusion Tables URI
 		fturl:'https://www.googleapis.com/fusiontables/v1/query',
 		// Google maps API key
@@ -71,19 +72,19 @@
 		}); // END Map object constructor
 		
 		/**
-		 * The Flushot application object
+		 * The Foodshot application object
 		 */
-		var Flu = new Flushots(Default.infoboxoptions);
+		var Food = new Foodshots(Default.infoboxoptions);
 		
 		var LegendDiv = document.createElement('div');
-		Flu.setMapLegend(LegendDiv,Map,Flu,Default);
+		Food.setMapLegend(LegendDiv,Map,Food,Default);
 		LegendDiv.index = 1;
 		Map.Map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(LegendDiv);
 		
-		if(Flu.geolocate)
+		if(Food.geolocate)
 		{
 			var FindMeDiv = document.createElement('div');
-			Flu.setFindMeControl(FindMeDiv,Map,Flu,Default);
+			Food.setFindMeControl(FindMeDiv,Map,Food,Default);
 			FindMeDiv.index = 1;
 			Map.Map.controls[google.maps.ControlPosition.TOP_RIGHT].push(FindMeDiv);
 		}
@@ -97,9 +98,9 @@
 		.done(function (ftdata) {
 			EventsFT.columns = ftdata.columns;
 			EventsFT.rows = ftdata.rows;
-			Flu.getEvents(EventsFT.columns,EventsFT.rows,Map);
+			Food.getEvents(EventsFT.columns,EventsFT.rows,Map);
 			// Highlight all today's and upcoming events.
-			Flu.setMarkersByDay('all');
+			Food.setMarkersByDay('all');
 		})
 		.fail(function(){
 			alert('Oh, no! We are having trouble getting the information we need from storage.');
@@ -117,7 +118,7 @@
 			}
 			
 			// Selected today's events
-			Flu.setMarkersByDay('all');
+			Food.setMarkersByDay('all');
 			
 		}); // END Day dropup listener
 		
@@ -134,7 +135,7 @@
 			}
 			
 			// Selected today's events
-			Flu.setMarkersByDay('seven');
+			Food.setMarkersByDay('seven');
 			
 		}); // END 7 day listener
 		
@@ -153,16 +154,16 @@
 			}
 			
 			// Select the day's events
-			Flu.setMarkersByDay($(this).text());
+			Food.setMarkersByDay($(this).text());
 			
 		}); // END Day dropup listener
 		
 		$('#nav-address').change(function(){
 			if($(this).val().length === 0)
 			{
-				if(Flu.AddressMarker !== null)
+				if(Food.AddressMarker !== null)
 				{
-					Flu.AddressMarker.setMap(null);
+					Food.AddressMarker.setMap(null);
 				}
 			}
 		});
@@ -189,9 +190,9 @@
 								Map.Map.panTo(Results[0].geometry.location);
 								Map.Map.setZoom(Default.zoomaddress);
 								// Make a map marker if none exists yet
-								if(Flu.AddressMarker === null)
+								if(Food.AddressMarker === null)
 								{
-									Flu.AddressMarker = new google.maps.Marker({
+									Food.AddressMarker = new google.maps.Marker({
 										position:Results[0].geometry.location,
 										map: Map.Map,
 										icon:Default.iconlocation,
@@ -201,11 +202,11 @@
 								else
 								{
 									// Move the marker to the new location
-									Flu.AddressMarker.setPosition(Results[0].geometry.location);
+									Food.AddressMarker.setPosition(Results[0].geometry.location);
 									// If the marker is hidden, unhide it
-									if(Flu.AddressMarker.getMap() === null)
+									if(Food.AddressMarker.getMap() === null)
 									{
-										Flu.AddressMarker.setMap(Map.Map);
+										Food.AddressMarker.setMap(Map.Map);
 									}
 								}
 								if($('#navbar-button').is(':visible'))
@@ -266,4 +267,4 @@
 		});
 		
 	}); // END jQuery on document ready
-})(jQuery,TkMap,FusionTable,Flushots);
+})(jQuery,TkMap,FusionTable,Foodshots);

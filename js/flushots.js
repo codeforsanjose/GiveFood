@@ -1,9 +1,9 @@
 
 /**
- * @classDestription - Placeholder for Flu Shot application variables and functions.
- * @class - Flushot
+ * @classDestription - Placeholder for Food Shot application variables and functions.
+ * @class - Foodshot
  */
-var Flushots = (function($) {
+var Foodshots = (function($) {
 	var constructor = function(infoboxoptions){
 		this.AddressMarker = null;
 		
@@ -21,8 +21,8 @@ var Flushots = (function($) {
 				$('#ical-'+Event.data.id).icalendar({
 					start: new Date(Date._parse(Event.data.begin_date+' '+Event.data.begin_time)),
 					end: new Date(Date._parse(Event.data.begin_date+' '+Event.data.end_time)),
-					title: 'Flu Shot Event',
-					summary: 'Flu Shot Event',
+					title: 'Food Shot Event',
+					summary: 'Food Shot Event',
 					description: "Please remember to bring your immunization/shot records with you.",
 					location: Event.data.facility_name+' - '+Event.data.street1+' - '+Event.data.city+' '+Event.data.state+' '+Event.data.postal_code,
 					iconSize: 16,
@@ -123,7 +123,7 @@ var Flushots = (function($) {
 		};
 		
 		// Put a Pan/Zoom control on the map
-		this.setFindMeControl = function(controlDiv,Map,Flu,Default)
+		this.setFindMeControl = function(controlDiv,Map,Food,Default)
 		{
 			// Set CSS styles for the DIV containing the control
 			// Setting padding to 5 px will offset the control
@@ -167,9 +167,9 @@ var Flushots = (function($) {
 							Map.Map.setCenter(Latlng);
 							Map.Map.setZoom(Default.zoomaddress);
 							// Make a map marker if none exists yet
-							if(Flu.AddressMarker === null)
+							if(Food.AddressMarker === null)
 							{
-								Flu.AddressMarker = new google.maps.Marker({
+								Food.AddressMarker = new google.maps.Marker({
 									position:Latlng,
 									map: Map.Map,
 									icon:Default.iconlocation,
@@ -179,14 +179,14 @@ var Flushots = (function($) {
 							else
 							{
 								// Move the marker to the new location
-								Flu.AddressMarker.setPosition(Latlng);
+								Food.AddressMarker.setPosition(Latlng);
 								// If the marker is hidden, unhide it
-								if(Flu.AddressMarker.getMap() === null)
+								if(Food.AddressMarker.getMap() === null)
 								{
-									Flu.AddressMarker.setMap(Map.Map);
+									Food.AddressMarker.setMap(Map.Map);
 								}
 							}
-							Flu.codeLatLng(Latlng);
+							Food.codeLatLng(Latlng);
 						},
 						// Failure
 						function()
@@ -202,7 +202,7 @@ var Flushots = (function($) {
 			});
 		};
 		
-		this.setMapLegend = function(controlDiv,Map,Flu,Default)
+		this.setMapLegend = function(controlDiv,Map,Food,Default)
 		{
 			// Set CSS styles for the DIV containing the control
 			// Setting padding to 5 px will offset the control
