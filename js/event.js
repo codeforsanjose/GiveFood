@@ -41,7 +41,6 @@ var Event = (function($){
 					{
 						ThisEvent.infoboxtext += '<br>'+ThisEvent.data.hours;
 					}
-					ThisEvent.infoboxtext += '<br>Cost: '+ThisEvent.data.cost;
 					ThisEvent.infoboxtext += '<br>'+ThisEvent.data.street1;
 					if(ThisEvent.data.street2 !== '') { ThisEvent.infoboxtext += '<br>'+ThisEvent.data.street2; }
 					ThisEvent.infoboxtext += '<br>'+ThisEvent.data.city+', '+ThisEvent.data.state+' '+ThisEvent.data.postal_code;
@@ -60,7 +59,7 @@ var Event = (function($){
 					ThisEvent.infoboxtext += '<br><a class="directions" href="http://www.google.com/maps?';
 					if($('#nav-address').val() !== '')
 					{
-						ThisEvent.infoboxtext += 'saddr='+$('#nav-address').val()+' Las Angeles, CA&';
+						ThisEvent.infoboxtext += 'saddr='+$('#nav-address').val()+' San Jose, CA&';
 					}
 					ThisEvent.infoboxtext += 'daddr='+ThisEvent.data.street1+' '+ThisEvent.data.city+', '+ThisEvent.data.state+' '+ThisEvent.data.postal_code+'" target="_blank" style="color:#8CF">Get Directions</a>';
 					ThisEvent.infoboxtext += '</div>';

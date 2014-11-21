@@ -228,7 +228,7 @@ var Foodshots = (function($) {
 			controlText.style.paddingRight = '.5em';
 			controlText.style.paddingTop = '.3em';
 			controlText.style.paddingBottom = '.3em';
-			controlText.innerHTML = '<div><a data-toggle="modal" href="#modal-fee">Currently Open Canned Food Donation Location</a><img src="img/blue.png" /></div>';
+			controlText.innerHTML = '<div><a data-toggle="modal" href="#modal-fee">Open Now!</a><img src="img/red.png" /></div>';
 			controlUI.appendChild(controlText);
 		// Setup the click event listeners.
 		//	google.maps.event.addDomListener(controlUI, 'click', function() {
